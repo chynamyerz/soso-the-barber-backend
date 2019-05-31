@@ -1,0 +1,65 @@
+type User {
+  id: ID! @id
+  cell: String!
+  email: String! @unique
+  image: String
+  name: String!
+  password: String!
+  bookings: [Booking!]!
+  oneTimePin: String
+  resetTokenExpiry: DateTime
+  role: Role @scalar
+  streetAddress: String
+  updatedAt: DateTime @updatedAt
+  createdAt: DateTime @createdAt
+}
+
+type Cut {
+  id: ID! @id
+  title: String!
+  description: String!
+  image: String!
+  price: Int!
+  updatedAt: DateTime @updatedAt
+  createdAt: DateTime @createdAt
+}
+
+type Slot {
+  id: ID! @id
+  day: String!
+  time: String!
+  status: SlotStaus! @scalar
+  updatedAt: DateTime @updatedAt
+  createdAt: DateTime @createdAt
+}
+
+type Booking {
+  id: ID! @id
+  cut: Cut
+  slot: Slot!
+  user: User!
+  status: BookingStatus! @scalar
+  updatedAt: DateTime @updatedAt
+  createdAt: DateTime @createdAt
+}
+
+type Gallery {
+  id: ID! @id
+  imageUrl: String
+  updatedAt: DateTime @updatedAt
+  createdAt: DateTime @createdAt
+}
+
+enum Role {
+  ADMIN
+}
+
+enum BookingStatus {
+  BOOKED
+  CANCELLED
+}
+
+enum SlotStaus {
+  ACTIVE
+  INACTIVE
+}

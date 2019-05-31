@@ -1,0 +1,16 @@
+#endpoint: ${env:PRISMA_ENDPOINT_DEV}
+#endpoint: ${env:PRISMA_ENDPOINT_PROD}
+endpoint: ${env:PRISMA_ENDPOINT_SOSO_PROD}
+datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
+
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
+  - generator: graphql-schema
+    output: ../src/generated/prisma.graphql
+      
+# This ensures that the Prisma client is updated whenever the datamodel changes
+hooks:
+    post-deploy:
+      - prisma generate

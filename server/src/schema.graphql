@@ -1,0 +1,206 @@
+# import * from './generated/prisma.graphql'
+
+"""
+The schema's root query type.
+"""
+type Query {
+  """
+  Returns the currently logged in user, null if the user is not logged in.
+  """
+  user: User
+
+  """
+  Returns the list of users regstered.
+  """
+  users: [User!]!
+
+  """
+  Returns the the list of slots that are available for booking
+
+  parameters
+    limit:
+      The number of slots to load
+  """
+  slots: [Slot!]!
+
+  """
+  Returns the the list of bookings that are booked
+
+  parameters
+    limit:
+      The number of bookings to load
+  """
+  bookings: [Booking!]!
+
+  """
+  Returns the the list of url images that are for gallery
+  """
+  gallery: [Gallery!]!
+}
+
+"""
+The schema's root mutation type.
+"""
+type Mutation {
+  """
+  Adds the newly created user when valid information provided,
+  The username or an email address should not exist already.
+
+  parameters
+    cell: 
+      User's contact number
+    email: 
+      User's email address
+    image: 
+      User's url for the profile image
+    name: 
+      User's name
+    password: 
+      User's password
+    streetAddress: 
+      User's streetAddress
+
+  Returns the SuccessMessage
+  """
+  signup(
+    cell: String!
+    email: String!
+    image: String
+    name: String!
+    password: String!
+    streetAddress: String
+  ): SuccessMessage
+
+  """
+  Updates the user information when valid information provided,
+  The username or an email address should not exist already.
+
+  parameters
+    cell: 
+      User's contact number
+    email: 
+      User's email address
+    image: 
+      User's url for the profile image
+    name: 
+      User's name
+    password: 
+      User's current password
+    newpassword: 
+      User's new password
+    streetAddress: 
+      User's streetAddress
+
+  Returns the SuccessMessage
+  """
+  updateUser(
+    cell: String
+    email: String
+    image: String
+    name: String
+    password: String!
+    newPassword: String
+    streetAddress: String
+  ): SuccessMessage
+
+  """
+  Adds the user's newly created booking for a specific slot.
+
+  parameters
+    slotId:
+      A unique ID for the slot to book
+    UserId:
+      A unique ID for the user who is booking the slot
+
+  Returns the SuccessMessage
+  """
+  book(
+    slotId: ID!
+    userId: ID!
+  ): SuccessMessage
+
+  """
+  Cancels a specific booking
+
+  parameters
+    bookingId:
+      A unique ID for the booking
+
+  Returns the SuccessMessage
+  """
+  cancelBooking(
+    bookingId: ID!
+  ): SuccessMessage
+
+  """
+  Requesting a OTP to use when changing the forgotten password.
+
+  parameters
+    email:
+      A registered email to change password for
+
+  Returns the SuccessMessage
+  """
+  requestReset(
+    email: String!
+  ): SuccessMessage
+
+  """
+  Reset the password
+
+  parameters
+    oneTimePin: A valid OTP which was requeted to change the password (Valid for an hour)
+    password: A new password
+
+  Returns the SuccessMessage
+  """
+  resetPassword(
+    oneTimePin: String!
+    password: String!
+  ): SuccessMessage
+}
+
+"""
+The User type
+"""
+type User {
+  """
+  An id to used to identify the user
+  """
+  id: ID!
+  """
+  User's contact number
+  """
+  cell: String!
+  """
+  User's email address
+  """
+  email: String!
+  """
+  An url for the user's profile image
+  """
+  image: String
+  """
+  User's name
+  """
+  name: String!
+  """
+  User's role
+  """
+  role: Role
+  """
+  User's street address
+  """
+  streetAddress: String
+  """
+  User's bookings
+  """
+  bookings: [Booking!]!
+}
+
+"""
+The SuccessMessage type
+"""
+type SuccessMessage {
+  message: String
+}
