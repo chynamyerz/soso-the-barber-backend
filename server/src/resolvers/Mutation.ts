@@ -33,7 +33,7 @@ const Mutation = {
    */
   async signup(root: any, args: UserCreateInput, ctx: IContext) {
     // Transform email address to lowercase.
-    args.email = args.email.toLowerCase();
+    args.email = args.email.trim().toLowerCase();
 
     // Check if the submitted email for registering already exists.
     if (await ctx.prisma.user({ email: args.email })) {
@@ -89,7 +89,7 @@ const Mutation = {
     // If user email is to change
     if (user && args.email && args.email !== user.email) {
       // Transform email address to lowercase.
-      args.email = args.email.toLowerCase();
+      args.email = args.email.trim().toLowerCase();
 
       // Check if the submitted email for registering already exists.
       if (await ctx.prisma.user({ email: args.email })) {
@@ -242,7 +242,7 @@ const Mutation = {
    */
   async requestReset(root: any, args: any, ctx: IContext) {
     // Transform email address to lowercase.
-    args.email = args.email.toLowerCase();
+    args.email = args.email.trim().toLowerCase();
 
     // Check if this is a real user
     const user = await ctx.prisma.user({ email: args.email });
