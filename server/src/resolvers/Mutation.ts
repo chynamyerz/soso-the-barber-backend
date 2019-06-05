@@ -150,12 +150,10 @@ const Mutation = {
 
     // Check if the user has enough funds to make the booking
     const charge = await stripe.charges.create({
-      amount: 400,
-      currency: "usd",
+      amount: 4000,
+      currency: "zar",
       source: args.tokenId
     });
-
-    console.log(charge);
 
     // Update the status of the slot to book
     await ctx.prisma.updateSlot({
