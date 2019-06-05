@@ -151,7 +151,7 @@ const Mutation = {
     // Check if the user has enough funds to make the booking
     const charge = await stripe.charges.create({
       amount: 400,
-      currency: "ZAR",
+      currency: "usd",
       source: args.tokenId
     });
 
