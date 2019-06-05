@@ -115,6 +115,7 @@ type Mutation {
   Returns the SuccessMessage
   """
   book(
+    tokenId: ID!
     slotId: ID!
     userId: ID!
   ): SuccessMessage

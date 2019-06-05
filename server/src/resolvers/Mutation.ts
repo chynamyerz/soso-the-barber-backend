@@ -6,6 +6,7 @@ import {
 } from "../generated/prisma-client";
 import moment from "moment";
 import { transport } from "../util";
+const stripe = require("../stripe");
 
 // Defining the context interface
 interface IContext {
@@ -146,6 +147,15 @@ const Mutation = {
     if (!ctx.user) {
       return null;
     }
+
+    // Check if the user has enough funds to make the booking
+    const charge = await stripe.charges.create({
+      amount: 400,
+      currency: "ZAR",
+      source: args.tokenId
+    });
+
+    console.log(charge);
 
     // Update the status of the slot to book
     await ctx.prisma.updateSlot({
