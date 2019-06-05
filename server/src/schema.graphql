@@ -118,6 +118,7 @@ type Mutation {
     tokenId: ID!
     slotId: ID!
     userId: ID!
+    amount: Int!
   ): SuccessMessage
 
   """

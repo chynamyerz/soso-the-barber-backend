@@ -150,10 +150,16 @@ const Mutation = {
 
     // Check if the user has enough funds to make the booking
     const charge = await stripe.charges.create({
-      amount: 4000,
+      amount: args.amount,
       currency: "zar",
       source: args.tokenId
     });
+
+    if (charge.status !== "succeeded") {
+      throw Error(
+        "Payment failed, please check if you have enough funds and try again later."
+      );
+    }
 
     // Update the status of the slot to book
     await ctx.prisma.updateSlot({
