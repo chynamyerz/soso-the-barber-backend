@@ -158,7 +158,8 @@ const Mutation = {
       amount: args.amount * 100,
       currency: "zar",
       source: args.tokenId,
-      receipt_email: user ? user.email : ""
+      receipt_email: user ? user.email : "",
+      description: "Soso the barber charge"
     });
 
     if (charge.status !== "succeeded") {
