@@ -131,6 +131,13 @@ const Query = {
     }).$fragment(`{
       id 
       status
+      cut{
+        id
+        title
+        price
+        description
+        image
+      }
       slot{ 
         id 
         time 
