@@ -28,7 +28,6 @@ type Slot {
   id: ID! @id
   day: String!
   time: String!
-  cut: Cut!
   status: SlotStaus! @scalar
   updatedAt: DateTime @updatedAt
   createdAt: DateTime @createdAt
@@ -36,7 +35,7 @@ type Slot {
 
 type Booking {
   id: ID! @id
-  cut: Cut
+  cut: Cut!
   slot: Slot!
   user: User!
   status: BookingStatus! @scalar

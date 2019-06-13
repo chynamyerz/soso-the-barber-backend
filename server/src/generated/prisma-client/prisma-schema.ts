@@ -29,7 +29,7 @@ export const typeDefs = /* GraphQL */ `
 
   type Booking {
     id: ID!
-    cut: Cut
+    cut: Cut!
     slot: Slot!
     user: User!
     status: BookingStatus!
@@ -45,7 +45,7 @@ export const typeDefs = /* GraphQL */ `
 
   input BookingCreateInput {
     id: ID
-    cut: CutCreateOneInput
+    cut: CutCreateOneInput!
     slot: SlotCreateOneInput!
     user: UserCreateOneWithoutBookingsInput!
     status: BookingStatus!
@@ -58,7 +58,7 @@ export const typeDefs = /* GraphQL */ `
 
   input BookingCreateWithoutUserInput {
     id: ID
-    cut: CutCreateOneInput
+    cut: CutCreateOneInput!
     slot: SlotCreateOneInput!
     status: BookingStatus!
   }
@@ -150,7 +150,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input BookingUpdateInput {
-    cut: CutUpdateOneInput
+    cut: CutUpdateOneRequiredInput
     slot: SlotUpdateOneRequiredInput
     user: UserUpdateOneRequiredWithoutBookingsInput
     status: BookingStatus
@@ -182,7 +182,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input BookingUpdateWithoutUserDataInput {
-    cut: CutUpdateOneInput
+    cut: CutUpdateOneRequiredInput
     slot: SlotUpdateOneRequiredInput
     status: BookingStatus
   }
@@ -345,12 +345,10 @@ export const typeDefs = /* GraphQL */ `
     price: Int
   }
 
-  input CutUpdateOneInput {
+  input CutUpdateOneRequiredInput {
     create: CutCreateInput
     update: CutUpdateDataInput
     upsert: CutUpsertNestedInput
-    delete: Boolean
-    disconnect: Boolean
     connect: CutWhereUniqueInput
   }
 

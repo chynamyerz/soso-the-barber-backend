@@ -703,7 +703,7 @@ export interface BookingScalarWhereInput {
 
 export interface BookingCreateInput {
   id?: Maybe<ID_Input>;
-  cut?: Maybe<CutCreateOneInput>;
+  cut: CutCreateOneInput;
   slot: SlotCreateOneInput;
   user: UserCreateOneWithoutBookingsInput;
   status: BookingStatus;
@@ -721,7 +721,7 @@ export interface CutCreateOneInput {
 }
 
 export interface BookingUpdateWithoutUserDataInput {
-  cut?: Maybe<CutUpdateOneInput>;
+  cut?: Maybe<CutUpdateOneRequiredInput>;
   slot?: Maybe<SlotUpdateOneRequiredInput>;
   status?: Maybe<BookingStatus>;
 }
@@ -818,7 +818,7 @@ export interface GallerySubscriptionWhereInput {
 }
 
 export interface BookingUpdateInput {
-  cut?: Maybe<CutUpdateOneInput>;
+  cut?: Maybe<CutUpdateOneRequiredInput>;
   slot?: Maybe<SlotUpdateOneRequiredInput>;
   user?: Maybe<UserUpdateOneRequiredWithoutBookingsInput>;
   status?: Maybe<BookingStatus>;
@@ -836,12 +836,10 @@ export interface UserUpdateManyMutationInput {
   streetAddress?: Maybe<String>;
 }
 
-export interface CutUpdateOneInput {
+export interface CutUpdateOneRequiredInput {
   create?: Maybe<CutCreateInput>;
   update?: Maybe<CutUpdateDataInput>;
   upsert?: Maybe<CutUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
   connect?: Maybe<CutWhereUniqueInput>;
 }
 
@@ -931,7 +929,7 @@ export interface SlotWhereInput {
 
 export interface BookingCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
-  cut?: Maybe<CutCreateOneInput>;
+  cut: CutCreateOneInput;
   slot: SlotCreateOneInput;
   status: BookingStatus;
 }
@@ -2046,7 +2044,7 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `https://soso-the-barber-db-0fe13f37eb.herokuapp.com/sosothebarber-db/prod`,
+  endpoint: `${process.env["PRISMA_ENDPOINT_SOSO_PROD"]}`,
   secret: `${process.env["PRISMA_SECRET"]}`
 });
 export const prisma = new Prisma();

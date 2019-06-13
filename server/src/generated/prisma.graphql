@@ -24,7 +24,7 @@ type BatchPayload {
 
 type Booking {
   id: ID!
-  cut: Cut
+  cut: Cut!
   slot: Slot!
   user: User!
   status: BookingStatus!
@@ -40,7 +40,7 @@ type BookingConnection {
 
 input BookingCreateInput {
   id: ID
-  cut: CutCreateOneInput
+  cut: CutCreateOneInput!
   slot: SlotCreateOneInput!
   user: UserCreateOneWithoutBookingsInput!
   status: BookingStatus!
@@ -53,7 +53,7 @@ input BookingCreateManyWithoutUserInput {
 
 input BookingCreateWithoutUserInput {
   id: ID
-  cut: CutCreateOneInput
+  cut: CutCreateOneInput!
   slot: SlotCreateOneInput!
   status: BookingStatus!
 }
@@ -145,7 +145,7 @@ input BookingSubscriptionWhereInput {
 }
 
 input BookingUpdateInput {
-  cut: CutUpdateOneInput
+  cut: CutUpdateOneRequiredInput
   slot: SlotUpdateOneRequiredInput
   user: UserUpdateOneRequiredWithoutBookingsInput
   status: BookingStatus
@@ -177,7 +177,7 @@ input BookingUpdateManyWithWhereNestedInput {
 }
 
 input BookingUpdateWithoutUserDataInput {
-  cut: CutUpdateOneInput
+  cut: CutUpdateOneRequiredInput
   slot: SlotUpdateOneRequiredInput
   status: BookingStatus
 }
@@ -340,12 +340,10 @@ input CutUpdateManyMutationInput {
   price: Int
 }
 
-input CutUpdateOneInput {
+input CutUpdateOneRequiredInput {
   create: CutCreateInput
   update: CutUpdateDataInput
   upsert: CutUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: CutWhereUniqueInput
 }
 
