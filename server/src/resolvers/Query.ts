@@ -104,6 +104,17 @@ const Query = {
   },
 
   /**
+   * The cuts query
+   *
+   * @param root parent
+   * @param args arguments
+   * @param ctx context
+   */
+  async cuts(root: any, args: any, ctx: { prisma: Prisma }) {
+    return await ctx.prisma.cuts();
+  },
+
+  /**
    * The bookings query
    *
    * @param root parent

@@ -28,6 +28,7 @@ type Slot {
   id: ID! @id
   day: String!
   time: String!
+  cut: Cut!
   status: SlotStaus! @scalar
   updatedAt: DateTime @updatedAt
   createdAt: DateTime @createdAt

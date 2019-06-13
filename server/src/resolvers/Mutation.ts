@@ -173,6 +173,11 @@ const Mutation = {
 
     await ctx.prisma.createBooking({
       status: "BOOKED",
+      cut: {
+        connect: {
+          id: args.cutId
+        }
+      },
       slot: {
         connect: {
           id: args.slotId

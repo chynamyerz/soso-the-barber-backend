@@ -16,12 +16,13 @@ type Query {
 
   """
   Returns the the list of slots that are available for booking
-
-  parameters
-    limit:
-      The number of slots to load
   """
   slots: [Slot!]!
+
+  """
+  Returns the the list of cuts that are available for slots
+  """
+  cuts: [Cut!]!
 
   """
   Returns the the list of bookings that are booked
@@ -115,6 +116,7 @@ type Mutation {
   Returns the SuccessMessage
   """
   book(
+    cutId: ID!
     tokenId: ID!
     slotId: ID!
     userId: ID!
