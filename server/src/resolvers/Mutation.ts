@@ -148,11 +148,17 @@ const Mutation = {
       return null;
     }
 
+    // currently logged in user
+    const user = await ctx.prisma.user({
+      id: ctx.user.id
+    });
+
     // Check if the user has enough funds to make the booking
     const charge = await stripe.charges.create({
       amount: args.amount * 100,
       currency: "zar",
-      source: args.tokenId
+      source: args.tokenId,
+      receipt_email: user ? user.email : ""
     });
 
     if (charge.status !== "succeeded") {
