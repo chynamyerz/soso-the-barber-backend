@@ -158,7 +158,7 @@ const Mutation = {
       amount: args.amount * 100,
       currency: "zar",
       source: args.tokenId,
-      receipt_email: user ? user.email : "",
+      receipt_email: "myezasifiso11@gmail.com",
       description: "Soso the barber charge"
     });
 
