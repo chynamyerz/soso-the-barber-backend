@@ -126,7 +126,7 @@ const createServer = async () => {
         });
       } else if (!user) {
         return res.status(401).send({
-          message: "The email address or password is wrong.",
+          message: "The email address or password is incorrect.",
           success: false
         });
       } else {
