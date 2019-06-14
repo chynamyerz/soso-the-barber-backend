@@ -37,6 +37,13 @@ const Query = {
       bookings{
         id
         status
+        cut{
+          id
+          title
+          price
+          description
+          image
+        }
         slot{ 
           id 
           time 
@@ -69,6 +76,13 @@ const Query = {
       bookings{
         id
         status
+        cut{
+          id
+          title
+          price
+          description
+          image
+        }
         slot{ 
           id 
           time 
