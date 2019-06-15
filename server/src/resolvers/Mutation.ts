@@ -6,7 +6,6 @@ import {
 } from "../generated/prisma-client";
 import moment from "moment";
 import { transport } from "../util";
-const stripe = require("../stripe");
 
 // Defining the context interface
 interface IContext {
@@ -152,21 +151,6 @@ const Mutation = {
     const user = await ctx.prisma.user({
       id: ctx.user.id
     });
-
-    // Check if the user has enough funds to make the booking
-    const charge = await stripe.charges.create({
-      amount: args.amount * 100,
-      currency: "zar",
-      source: args.tokenId,
-      receipt_email: user ? user.email : "",
-      description: "Soso the barber charge"
-    });
-
-    if (charge.status !== "succeeded") {
-      throw Error(
-        "Payment failed, please check if you have enough funds and try again later."
-      );
-    }
 
     // Update the status of the slot to book
     await ctx.prisma.updateSlot({

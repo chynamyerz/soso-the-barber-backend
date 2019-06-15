@@ -114,19 +114,13 @@ type Mutation {
       A unique ID for the slot to book
     UserId:
       A unique ID for the user who is booking the slot
-    tokenId:
-      A stripe token ID for deducting charges from the user account
-    amount: 
-      An amount a cut it cost
 
   Returns the SuccessMessage
   """
   book(
     cutId: ID!
-    tokenId: ID!
     slotId: ID!
     userId: ID!
-    amount: Int!
   ): SuccessMessage
 
   """
