@@ -43,9 +43,6 @@ const createServer = async () => {
     typeDefs: "./src/schema.graphql"
   });
 
-  // Set the payment views
-  server.express.set("payment", "./payment")
-
   // Allow server to use the cors
   server.express.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
